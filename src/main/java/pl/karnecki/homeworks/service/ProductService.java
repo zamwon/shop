@@ -36,4 +36,8 @@ public class ProductService {
         productToSave.setId(new Random().nextLong());
         return productToSave;
     }
+
+    public boolean deleteProduct(Long id){
+        return productRepository.allProducts().remove(id);
+    }
 }

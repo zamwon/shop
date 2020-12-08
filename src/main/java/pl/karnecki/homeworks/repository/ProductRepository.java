@@ -4,12 +4,13 @@ import org.springframework.stereotype.Repository;
 import pl.karnecki.homeworks.Product;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 @Repository
 public class ProductRepository {
 
-    public ArrayList<Product> allProducts() {
+    public List<Product> allProducts() {
 
         var result = new ArrayList<Product>();
 

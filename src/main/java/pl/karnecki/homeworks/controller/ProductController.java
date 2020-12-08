@@ -36,4 +36,9 @@ public class ProductController {
         var newProduct = productService.saveProduct(productToAdd);
         return ResponseEntity.created(URI.create("/products" + newProduct.getId())).body(newProduct);
     }
+
+    @DeleteMapping("/products")
+    public void deleteProduct(@RequestParam Long id){
+        allProducts().remove(id);
+    }
 }
