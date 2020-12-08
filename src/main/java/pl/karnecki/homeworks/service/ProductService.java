@@ -19,6 +19,7 @@ public class ProductService {
     }
 
     public List<Product> giveAllProducts() {
+
         var list = productRepository.allProducts();
         return list;
     }
@@ -31,13 +32,13 @@ public class ProductService {
         return result;
     }
 
-    public Product saveProduct(Product productToSave) {
+    public void saveProduct(Product productToSave) {
+        productRepository.allProducts().add(productToSave);
 
-        productToSave.setId(new Random().nextLong());
-        return productToSave;
+
     }
 
-    public boolean deleteProduct(Long id){
-        return productRepository.allProducts().remove(id);
+    public void deleteProduct(Long id){
+        productRepository.allProducts().remove(id);
     }
 }
