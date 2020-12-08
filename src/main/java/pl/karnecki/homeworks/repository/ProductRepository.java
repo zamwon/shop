@@ -12,7 +12,7 @@ public class ProductRepository {
 
     public List<Product> allProducts() {
 
-        var result = new ArrayList<Product>();
+        ArrayList<Product> result = new ArrayList<>();
 
         var pyry = Product.builder()
                 .id(1L)

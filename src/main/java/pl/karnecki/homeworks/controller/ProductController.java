@@ -38,6 +38,6 @@ public class ProductController {
 
     @DeleteMapping("/products")
     public void deleteProduct(@RequestParam Long id){
-        allProducts().remove(id);
+        productService.deleteProduct(id);
     }
 }

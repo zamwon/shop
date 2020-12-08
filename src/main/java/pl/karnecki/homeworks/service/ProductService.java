@@ -34,11 +34,10 @@ public class ProductService {
 
     public void saveProduct(Product productToSave) {
         productRepository.allProducts().add(productToSave);
-
-
     }
 
     public void deleteProduct(Long id){
         productRepository.allProducts().remove(id);
     }
+
 }
