@@ -7,6 +7,7 @@ import pl.karnecki.homeworks.service.ProductService;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -25,7 +26,7 @@ public class ProductController {
     }
 
     @GetMapping("/product/{id}")
-    public Product findProductById(@PathVariable ("id") Long id){
+    public Optional<Product> findProductById(@PathVariable ("id") Long id){
         return productService.findProductById(id);
     }
 
@@ -41,7 +42,7 @@ public class ProductController {
         productService.deleteProduct(id);
     }
 
-    @PutMapping("/products")
+    @PutMapping("/products/{id}")
     public void updateProduct(@RequestBody Product product, @PathVariable Long id){
         productService.updateProduct(product, id);
     }

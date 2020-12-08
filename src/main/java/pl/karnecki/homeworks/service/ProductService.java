@@ -3,49 +3,44 @@ package pl.karnecki.homeworks.service;
 
 import org.springframework.stereotype.Service;
 import pl.karnecki.homeworks.Product;
-import pl.karnecki.homeworks.repository.ProductRepository;
+import pl.karnecki.homeworks.repository.ProductRepo;
 
+
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+import java.util.Optional;
+
 
 @Service
 public class ProductService {
 
-    private final ProductRepository productRepository;
+    private final ProductRepo productRepo;
 
 
-    public ProductService(ProductRepository productRepository) {
-        this.productRepository = productRepository;
+    public ProductService(ProductRepo productRepo) {
+        this.productRepo = productRepo;
     }
 
     public List<Product> giveAllProducts() {
-
-        var list = productRepository.allProducts();
-        return list;
+        List<Product> products = new ArrayList<>();
+        productRepo.findAll().forEach(products::add);
+        return products;
     }
 
-    public Product findProductById(Long id) {
-        var result = productRepository.allProducts().stream()
-                .filter(product -> product.getId() == id)
-                .findFirst()
-                .orElse(null);
-        return result;
+    public Optional<Product> findProductById(Long id) {
+        return productRepo.findById(id);
     }
 
     public void saveProduct(Product productToSave) {
-        productRepository.allProducts().add(productToSave);
+        productRepo.save(productToSave);
     }
 
     public void deleteProduct(Long id) {
-        productRepository.allProducts().remove(id);
+        productRepo.deleteById(id);
     }
 
     public void updateProduct(Product product, Long id) {
-        for (int i = 0; i < giveAllProducts().size(); i++) {
-            Product p = giveAllProducts().get(i);
-            if (p.getId().equals(id)) {
-                giveAllProducts().set(i, product);
-            }
-        }
+        productRepo.save(product);
     }
 }
+
