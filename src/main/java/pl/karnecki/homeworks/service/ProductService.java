@@ -36,8 +36,16 @@ public class ProductService {
         productRepository.allProducts().add(productToSave);
     }
 
-    public void deleteProduct(Long id){
+    public void deleteProduct(Long id) {
         productRepository.allProducts().remove(id);
     }
 
+    public void updateProduct(Product product, Long id) {
+        for (int i = 0; i < giveAllProducts().size(); i++) {
+            Product p = giveAllProducts().get(i);
+            if (p.getId().equals(id)) {
+                giveAllProducts().set(i, product);
+            }
+        }
+    }
 }
